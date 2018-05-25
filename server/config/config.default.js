@@ -18,15 +18,16 @@ module.exports = appInfo => {
     options: {}
   }
 
+  // ctx.body只能返回字符串
   config.onerror = {
     all (err, ctx) {
-      console.log(err.message)
-      ctx.body = { code: -1, msg: err.message }
-      // ctx.status = 500
+      // ctx.body = `${err.errors}`
+      ctx.body = JSON.stringify(err.errors)
+      ctx.status = 500
     },
     html (err, ctx) {
       ctx.body = `<h3>${err.message || 'error'}</h3>`
-      // ctx.status = 500
+      ctx.status = 500
     }
   }
 

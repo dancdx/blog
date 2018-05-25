@@ -15,12 +15,13 @@ class UserController extends BaseController {
     const params = this.ctx.request.body
     this.ctx.validate(userRule)
     const userInfo = await this.service.user.register(params)
-    this.ctx.success(userInfo)
+    if (userInfo) this.ctx.success(userInfo)
   }
   async login () {
     const params = this.ctx.request.body
+    this.ctx.validate(userRule)
     const userInfo = await this.service.user.login(params)
-    this.ctx.success(userInfo)
+    if (userInfo) this.ctx.success(userInfo)
   }
 }
 

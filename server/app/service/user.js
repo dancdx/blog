@@ -7,24 +7,25 @@ class UserService extends Service {
   // }
   async register (params) {
     const { username, password } = params
-    const data = await this.ctx.model.User.create({ username, password })
-    return data
+    const user = await this.ctx.model.User.findOne({ username })
+    if (user) {
+      this.ctx.fail('用户名已存在')
+      return null
+    } else {
+      const data = await this.ctx.model.User.create({ username, password })
+      return data
+    }
   }
   async login (params) {
     const { username, password } = params
-    const user = await this.ctx.model.User.findOne({ username })
-    console.log(params)
-    console.log(password)
-    console.log(user)
+    let user = await this.ctx.model.User.findOne({ username })
     if (!user) {
-      this.ctx.throw(200, '用户名不存在')
-    }
-    try {
-      if (password !== user.data.password) {
-        this.ctx.throw(200, '密码错误1')
+      this.ctx.fail('用户名不存在')
+    } else {
+      if (password !== user.password) {
+        this.ctx.fail('密码错误')
+        user = null
       }
-    } catch (e) {
-      this.ctx.throw(200, e)
     }
     return user
   }
