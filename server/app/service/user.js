@@ -7,7 +7,6 @@ class UserService extends Service {
   // }
   async register (params) {
     const { username, password } = params
-    // console.log(this.ctx.model.User)
     const data = await this.ctx.model.User.create({ username, password })
     return data
   }

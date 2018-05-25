@@ -2,12 +2,18 @@
 
 const BaseController = require('./base')
 
+const userRule = {
+  username: 'string',
+  password: 'string'
+}
+
 class UserController extends BaseController {
   async index () {
     this.ctx.success({ name: 'test' })
   }
   async register () {
     const params = this.ctx.request.body
+    this.ctx.validate(userRule)
     const userInfo = await this.service.user.register(params)
     this.ctx.success(userInfo)
   }

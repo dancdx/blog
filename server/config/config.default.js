@@ -20,16 +20,13 @@ module.exports = appInfo => {
 
   config.onerror = {
     all (err, ctx) {
-      ctx.body = `${err.message}`
-      ctx.status = 500
+      console.log(err.message)
+      ctx.body = { code: -1, msg: err.message }
+      // ctx.status = 500
     },
     html (err, ctx) {
-      ctx.body = '<h3>error</h3>'
-      ctx.status = 500
-    },
-    json (err, ctx) {
-      ctx.body = { message: 'error' }
-      ctx.status = 500
+      ctx.body = `<h3>${err.message || 'error'}</h3>`
+      // ctx.status = 500
     }
   }
 
