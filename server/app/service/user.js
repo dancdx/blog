@@ -1,4 +1,5 @@
 const Service = require('egg').Service
+const ms = require('ms')
 
 class UserService extends Service {
   // async find (uid) {
@@ -27,6 +28,8 @@ class UserService extends Service {
         user = null
       }
     }
+    this.ctx.session.user = user
+    this.ctx.session.maxAge = ms('10d')
     return user
   }
 }
