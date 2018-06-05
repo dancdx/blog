@@ -15,5 +15,8 @@ module.exports = app => {
   router.post('/category/delete', controller.category.deleteCategory)
   router.post('/category/update', controller.category.updateCategory)
 
-  router.post('/tag', controller.tag.addTag)
+  router.get('/tag', controller.tag.getTag)
+  router.post('/tag/add', controller.tag.addTag)
+  router.post('/tag/delete', controller.tag.deleteTag)
+  router.post('/tag/update', controller.tag.updateTag)
 }

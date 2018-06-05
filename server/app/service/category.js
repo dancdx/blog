@@ -30,16 +30,9 @@ class CategoryService extends Service {
   }
   async updateCategory (params) {
     const { name, id } = params
-    const category = await this.ctx.model.Category.findById(id)
-    console.log(category)
+    const category = await this.ctx.model.Category.findOneAndUpdate({ _id: id }, { name }, { new: true })
     if (category) {
-      const data = await this.ctx.model.Category.findOneAndUpdate({ _id: id }, { name }, { new: true })
-      if (data) {
-        return { name, id }
-      }
-    } else {
-      this.ctx.fail('该分类不存在')
-      return null
+      return { name, id }
     }
   }
 }
