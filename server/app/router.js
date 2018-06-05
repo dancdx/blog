@@ -19,4 +19,7 @@ module.exports = app => {
   router.post('/tag/add', controller.tag.addTag)
   router.post('/tag/delete', controller.tag.deleteTag)
   router.post('/tag/update', controller.tag.updateTag)
+
+  router.get('/article', controller.article.getArticle)
+  router.post('/article/add', controller.article.addArticle)
 }
