@@ -22,21 +22,22 @@ class ArticleService extends Service {
     }
   }
   async deleteArticle (params) {
-    const { name } = params
-    const article = await this.ctx.model.Article.findOne({ name })
+    const { id } = params
+    const article = await this.ctx.model.Article.findById(id)
     if (article) {
       article.remove()
       return 'success'
     } else {
-      this.ctx.fail('该标签不存在')
+      this.ctx.fail('该文章不存在')
       return null
     }
   }
   async updateArticle (params) {
-    const { name, id } = params
-    const article = await this.ctx.model.Article.findOneAndUpdate({ _id: id }, { name }, { new: true })
+    const { id, title, content, tag, category } = params
+    const desc = content.slice(0, 50)
+    const article = await this.ctx.model.Article.findOneAndUpdate({ _id: id }, { title, content, tag, category, desc })
     if (article) {
-      return { name, id }
+      return { id, title, content, tag, category, desc }
     }
   }
 }

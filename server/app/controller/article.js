@@ -11,6 +11,13 @@ const ArticleRule = {
 const DetailRule = {
   id: 'string'
 }
+const UpdateRule = {
+  title: 'string',
+  content: 'string',
+  tag: 'array',
+  category: 'string',
+  id: 'string'
+}
 
 class ArticleController extends BaseController {
   async getArticle () {
@@ -33,13 +40,13 @@ class ArticleController extends BaseController {
   }
   async deleteArticle () {
     const params = this.ctx.request.body
-    this.ctx.validate(ArticleRule)
+    this.ctx.validate(DetailRule)
     const articleInfo = await this.service.article.deleteArticle(params)
     if (articleInfo) this.ctx.success(articleInfo)
   }
   async updateArticle () {
     const params = this.ctx.request.body
-    // this.ctx.validate(updateRule)
+    this.ctx.validate(UpdateRule)
     const articleInfo = await this.service.article.updateArticle(params)
     if (articleInfo) this.ctx.success(articleInfo)
   }
