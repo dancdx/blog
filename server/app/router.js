@@ -22,4 +22,5 @@ module.exports = app => {
 
   router.get('/article', controller.article.getArticle)
   router.post('/article/add', controller.article.addArticle)
+  router.get('/article/detail', controller.article.detailArticle)
 }

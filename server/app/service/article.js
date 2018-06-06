@@ -3,14 +3,23 @@ const Service = require('egg').Service
 
 class ArticleService extends Service {
   async getArticle (params) {
-    const article = await this.ctx.model.Article.find()
-    return article
+    const { pageSize, pageIndex } = params
+    const count = await this.ctx.model.Article.count()
+    const article = await this.ctx.model.Article.find().skip(pageIndex * pageSize).limit(pageSize)
+    return { count, ...article }
   }
   async addArticle (params) {
     const { title, content, tag, category } = params
     const desc = content.slice(0, 50)
     const data = await this.ctx.model.Article.create({ title, content, tag, category, desc })
     return data
+  }
+  async detailArticle (params) {
+    const { id } = params
+    const article = await this.ctx.model.Article.findById(id)
+    if (article) {
+      return article
+    }
   }
   async deleteArticle (params) {
     const { name } = params

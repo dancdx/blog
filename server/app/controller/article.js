@@ -8,11 +8,14 @@ const ArticleRule = {
   tag: 'array',
   category: 'string'
 }
+const DetailRule = {
+  id: 'string'
+}
 
 class ArticleController extends BaseController {
   async getArticle () {
-    const params = this.ctx.request.body
-    const { pageSize = 3, pageIndex = 1 } = params
+    const params = this.ctx.query
+    const { pageSize = 3, pageIndex = 0 } = params
     const ArticleInfo = await this.service.article.getArticle({pageSize, pageIndex, ...params})
     if (ArticleInfo) this.ctx.success(ArticleInfo)
   }
@@ -20,6 +23,12 @@ class ArticleController extends BaseController {
     const params = this.ctx.request.body
     this.ctx.validate(ArticleRule)
     const articleInfo = await this.service.article.addArticle(params)
+    if (articleInfo) this.ctx.success(articleInfo)
+  }
+  async detailArticle () {
+    const params = this.ctx.query
+    this.ctx.validate(DetailRule, params)
+    const articleInfo = await this.service.article.detailArticle(params)
     if (articleInfo) this.ctx.success(articleInfo)
   }
   async deleteArticle () {
