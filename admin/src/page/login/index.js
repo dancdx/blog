@@ -3,7 +3,6 @@ import * as actions from './actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Form, Icon, Input, Button, Checkbox  } from 'antd'
-// import 'antd/dist/antd.css'
 import styles from './index.css'
 
 const FormItem = Form.Item

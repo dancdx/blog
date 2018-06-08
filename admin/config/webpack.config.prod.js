@@ -169,15 +169,29 @@ module.exports = {
           {
             test: /\.css$/,
             include: [paths.appNodeModules, path.resolve(paths.appSrc, 'components/base')],
-            use: [
-              require.resolve('style-loader'),
-              {
-                loader: require.resolve('css-loader'),
-                options: {
-                  importLoaders: 1,
-                }
-              }
-            ]
+            loader: ExtractTextPlugin.extract(
+              Object.assign(
+                {
+                  fallback: {
+                    loader: require.resolve('style-loader'),
+                    options: {
+                      hmr: false,
+                    },
+                  },
+                  use: [
+                    {
+                      loader: require.resolve('css-loader'),
+                      options: {
+                        importLoaders: 1,
+                        minimize: true,
+                        sourceMap: shouldUseSourceMap,
+                      },
+                    }
+                  ]
+                },
+                extractTextPluginOptions
+              )
+            ),            
           },
           {
             test: /\.css$/,
