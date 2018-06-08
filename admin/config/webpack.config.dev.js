@@ -159,13 +159,27 @@ module.exports = {
           // in development "style" loader enables hot editing of CSS.
           {
             test: /\.css$/,
+            include: [paths.appNodeModules, path.resolve(paths.appSrc, 'components/base')],
             use: [
               require.resolve('style-loader'),
               {
                 loader: require.resolve('css-loader'),
                 options: {
                   importLoaders: 1,
-                  module: true,
+                }
+              }
+            ]
+          },
+          {
+            test: /\.css$/,
+            include: paths.appSrc,
+            use: [
+              require.resolve('style-loader'),
+              {
+                loader: require.resolve('css-loader'),
+                options: {
+                  importLoaders: 1,
+                  modules: true,
                   localIdentName: '[path][name]__[local]--[hash:base64:5]'
                 },
               },

@@ -168,6 +168,20 @@ module.exports = {
           // in the main CSS file.
           {
             test: /\.css$/,
+            include: [paths.appNodeModules, path.resolve(paths.appSrc, 'components/base')],
+            use: [
+              require.resolve('style-loader'),
+              {
+                loader: require.resolve('css-loader'),
+                options: {
+                  importLoaders: 1,
+                }
+              }
+            ]
+          },
+          {
+            test: /\.css$/,
+            include: paths.appSrc,
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {
@@ -176,7 +190,7 @@ module.exports = {
                     options: {
                       hmr: false,
                     },
-                  },
+                  },                  
                   use: [
                     {
                       loader: require.resolve('css-loader'),
@@ -184,7 +198,7 @@ module.exports = {
                         importLoaders: 1,
                         minimize: true,
                         sourceMap: shouldUseSourceMap,
-                        module: true,
+                        modules: true,
                         localIdentName: '[path][name]__[local]--[hash:base64:5]'
                       },
                     },
