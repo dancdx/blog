@@ -7,6 +7,9 @@ import { routerMiddleware } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory'
 import rootReducer from './reducer'
 import registerServiceWorker from './registerServiceWorker'
+// import zhCN from 'antd/lib/locale-provider/zh_CN'
+import 'antd/dist/antd.css'
+import './index.css'
 
 const history = createHistory()
 
