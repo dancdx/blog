@@ -8,59 +8,60 @@ import styles from './index.css'
 const FormItem = Form.Item
 
 class NormalLoginForm  extends Component{
-  constructor () {
-    super()
-    this.state = {
-      username: '',
-      password: ''
-    }
-    this.setValue = this.setValue.bind(this)
-    this.login = this.login.bind(this)
-  }
-  login () {
-    const params = this.state
-    this.props.actions.login(params)
-  }
+  // constructor () {
+  //   super()
+  //   this.state = {
+  //     username: '',
+  //     password: ''
+  //   }
+  //   this.setValue = this.setValue.bind(this)
+  //   this.login = this.login.bind(this)
+  // }
+  // login () {
+  //   const params = this.state
+  //   c
+  // }
 
-  setValue (e) {
-    const { name, value } = e.target
-    this.setState({
-      [name]: value
-    })
-  }
+  // setValue (e) {
+  //   const { name, value } = e.target
+  //   this.setState({
+  //     [name]: value
+  //   })
+  // }
 
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        this.props.actions.login(values)
       }
     });
   }
 
   render () {
     const { getFieldDecorator } = this.props.form
-    const { username, password } = this.state
-    console.log(this.props)
+    // const { username, password } = this.state
+    // console.log(this.props)
     return (
       <div className={styles.login_page}>
         <h1>博客后台管理系统</h1>
-        <input name='username' value={username} onChange={this.setValue}/>
-        <input name='password' value={password} onChange={this.setValue}/>
-        <button onClick={this.login}>login</button>
+        {/* <input name='username' value={username} onChange={this.setValue}/> */}
+        {/* <input name='password' value={password} onChange={this.setValue}/> */}
+        {/* <button onClick={this.login}>login</button> */}
         <Form onSubmit={this.handleSubmit} className="login-form">
         <FormItem>
-          {getFieldDecorator('userName', {
+          {getFieldDecorator('username', {
             rules: [{ required: true, message: 'Please input your username!' }],
           })(
-            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="用户名" />
           )}
         </FormItem>
         <FormItem>
           {getFieldDecorator('password', {
             rules: [{ required: true, message: 'Please input your Password!' }],
           })(
-            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="密码" />
           )}
         </FormItem>
         <FormItem>
@@ -68,13 +69,13 @@ class NormalLoginForm  extends Component{
             valuePropName: 'checked',
             initialValue: true,
           })(
-            <Checkbox>Remember me</Checkbox>
+            <Checkbox>记住密码</Checkbox>
           )}
-          <a className="login-form-forgot" href="">Forgot password</a>
+          <a className="login-form-forgot" href="">忘记密码</a>
           <Button type="primary" htmlType="submit" className="login-form-button">
-            Log in
+            登陆
           </Button>
-          Or <a href="">register now!</a>
+          Or <a href="">注册</a>
         </FormItem>
       </Form>
       </div>

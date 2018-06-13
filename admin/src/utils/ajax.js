@@ -1,12 +1,19 @@
 import axios from 'axios'
+import { message } from 'antd'
+
+message.config({
+  top:200,
+  duration:2
+})
 
 axios.defaults = Object.assign(axios.defaults, {
-  baseURL: 'http://recordapi.frontjs.cc',
+  baseURL: 'http://127.0.0.1:7001',
   timeout: 5000,
   withCredentials: true
 })
 
 axios.interceptors.response.use(function (response) {
+  console.log(response)
   let data = response.data
   if (typeof data === 'string') {
     try {
@@ -16,14 +23,15 @@ axios.interceptors.response.use(function (response) {
     }
   }
   if (data.code !== 0) {
-    if (data.code === -3) {
+    if (data.code === -2) {
       // 未登录
       alert(data.message)
       // 清除登陆信息
       localStorage.clear()
       return Promise.resolve(null)
     } else {
-      alert(data.message)
+      message.error(data.data)
+      // alert(data.data)
       return Promise.resolve(null)
     }
   }

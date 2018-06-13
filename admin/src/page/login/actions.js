@@ -9,7 +9,6 @@ export const login = (params) => {
       username:params.username,
       password:params.password
     })
-    console.log(data)
     if(data){
       dispatch({
         type:LOGIN,
