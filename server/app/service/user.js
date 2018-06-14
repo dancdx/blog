@@ -7,18 +7,18 @@ class UserService extends Service {
   //   return user
   // }
   async register (params) {
-    const { username, password } = params
+    const { username, password, phone, email } = params
     const user = await this.ctx.model.User.findOne({ username })
     if (user) {
       this.ctx.fail('用户名已存在')
       return null
     } else {
-      const data = await this.ctx.model.User.create({ username, password })
+      const data = await this.ctx.model.User.create({ username, password, phone, email })
       return data
     }
   }
   async login (params) {
-    const { username, password } = params
+    const { username, password, remember } = params
     let user = await this.ctx.model.User.findOne({ username })
     if (!user) {
       this.ctx.fail('用户名不存在')
@@ -28,8 +28,11 @@ class UserService extends Service {
         user = null
       }
     }
-    this.ctx.session.user = user
-    this.ctx.session.maxAge = ms('10d')
+    if(remember){
+      this.ctx.session.user = user
+      this.ctx.session.maxAge = ms('10d')
+    }
+    
     return user
   }
 }

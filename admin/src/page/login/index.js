@@ -8,27 +8,6 @@ import styles from './index.css'
 const FormItem = Form.Item
 
 class NormalLoginForm  extends Component{
-  // constructor () {
-  //   super()
-  //   this.state = {
-  //     username: '',
-  //     password: ''
-  //   }
-  //   this.setValue = this.setValue.bind(this)
-  //   this.login = this.login.bind(this)
-  // }
-  // login () {
-  //   const params = this.state
-  //   c
-  // }
-
-  // setValue (e) {
-  //   const { name, value } = e.target
-  //   this.setState({
-  //     [name]: value
-  //   })
-  // }
-
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -41,14 +20,9 @@ class NormalLoginForm  extends Component{
 
   render () {
     const { getFieldDecorator } = this.props.form
-    // const { username, password } = this.state
-    // console.log(this.props)
     return (
       <div className={styles.login_page}>
         <h1>博客后台管理系统</h1>
-        {/* <input name='username' value={username} onChange={this.setValue}/> */}
-        {/* <input name='password' value={password} onChange={this.setValue}/> */}
-        {/* <button onClick={this.login}>login</button> */}
         <Form onSubmit={this.handleSubmit} className="login-form">
         <FormItem>
           {getFieldDecorator('username', {
@@ -75,7 +49,7 @@ class NormalLoginForm  extends Component{
           <Button type="primary" htmlType="submit" className="login-form-button">
             登陆
           </Button>
-          Or <a href="">注册</a>
+          Or <a href="/register">注册</a>
         </FormItem>
       </Form>
       </div>

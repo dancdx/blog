@@ -7,7 +7,8 @@ export const login = (params) => {
     
     const data = await ajax.post(API.login,{
       username:params.username,
-      password:params.password
+      password:params.password,
+      remember:params.remember
     })
     if(data){
       dispatch({
@@ -15,7 +16,7 @@ export const login = (params) => {
         data
       })
       localStorage.setItem('user', JSON.stringify(data))
-      dispatch(push('/user'))
+      dispatch(push('/'))
     }
   }
 }

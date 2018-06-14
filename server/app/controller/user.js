@@ -6,6 +6,12 @@ const userRule = {
   username: 'string',
   password: 'string'
 }
+const RegisterRule = {
+  username: 'string',
+  password: 'string',
+  phone:'string',
+  email:'string'
+}
 
 class UserController extends BaseController {
   async index () {
@@ -13,7 +19,7 @@ class UserController extends BaseController {
   }
   async register () {
     const params = this.ctx.request.body
-    this.ctx.validate(userRule)
+    this.ctx.validate(RegisterRule)
     const userInfo = await this.service.user.register(params)
     if (userInfo) this.ctx.success(userInfo)
   }
