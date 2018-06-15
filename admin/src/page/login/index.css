@@ -1,15 +1,8 @@
-.login_page {
-  width: 300px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-left: -150px;
-  margin-top: -200px; }
-  .login_page h1 {
-    text-align: center; }
-  .login_page :global .login-form {
-    max-width: 300px; }
-  .login_page :global .login-form-forgot {
-    float: right; }
-  .login_page :global .login-form-button {
-    width: 100%; }
+.login_page :global .login-form {
+  max-width: 300px; }
+
+.login_page :global .login-form-forgot {
+  float: right; }
+
+.login_page :global .login-form-button {
+  width: 100%; }
