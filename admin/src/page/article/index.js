@@ -2,25 +2,34 @@ import React, { Component } from 'react'
 // import * as actions from './actions'
 // import { connect } from 'react-redux'
 // import { bindActionCreators } from 'redux'
+import Box from '@/components/layout'
+import { Layout, Menu, Breadcrumb, Icon, Select  } from 'antd'
+
 import styles from './index.css'
 
-import { Layout, Menu, Breadcrumb, Icon } from 'antd'
 const { SubMenu } = Menu
-const { Header, Content, Footer, Sider } = Layout
+const { Content, Sider } = Layout
+const Option = Select.Option;
+
+function handleChange(value) {
+  console.log(`selected ${value}`);
+}
+const children = [];
+for (let i = 10; i < 36; i++) {
+  children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
+}
+function handleBlur() {
+  console.log('blur');
+}
+
+function handleFocus() {
+  console.log('focus');
+}
 
 class Article extends Component {
   render () {
     return (
-    <Layout>
-    <Header className="header">
-      <div className="logo" />
-      <h1 className={styles.title_header}>博客后台管理系统</h1>
-      <div className={styles.user_info}>
-        <a className={styles.username} href='javascript:void(0)'>1</a>
-        <a className={styles.user_exit} href='javascript:void(0)'>退出</a>
-      </div>
-    </Header>
-    <Content style={{ padding: '0 50px' }}>
+    <Box page='article'>
       <Breadcrumb style={{ margin: '16px 0' }}>
         <Breadcrumb.Item>Home</Breadcrumb.Item>
         <Breadcrumb.Item>List</Breadcrumb.Item>
@@ -41,14 +50,38 @@ class Article extends Component {
           </Menu>
         </Sider>
         <Content style={{ padding: '0 24px', minHeight: 280 }}>
-          Content
+          <div className = {styles.choose_sort}>
+            <label for="sort">选择分类</label>
+            <Select
+              showSearch
+              style={{ width: 200 }}
+              placeholder="Select a person"
+              optionFilterProp="children"
+              onChange={handleChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+            >
+              <Option value="jack">Jack</Option>
+              <Option value="lucy">Lucy</Option>
+              <Option value="tom">Tom</Option>
+            </Select>
+          </div>
+          <div className = {styles.choose_sort}>
+            <label for="sort">选择标签</label>
+            <Select
+              mode="multiple"
+              style={{ width: '100%' }}
+              placeholder="Please select"
+              defaultValue={['a10', 'c12']}
+              onChange={handleChange}
+            >
+              {children}
+            </Select>
+          </div>
         </Content>
       </Layout>
-    </Content>
-    <Footer style={{ textAlign: 'center' }}>
-    © 2018 dancdx with help from Jekyll Bootstrap and Twitter Bootstrap
-    </Footer>
-  </Layout>
+    </Box>
   )}
 }
 

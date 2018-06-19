@@ -1,8 +1,9 @@
-.login_page :global .login-form {
-  max-width: 300px; }
-
-.login_page :global .login-form-forgot {
-  float: right; }
-
-.login_page :global .login-form-button {
-  width: 100%; }
+.login_page {
+  width: 300px;
+  margin: 100px auto; }
+  .login_page :global .login-form {
+    max-width: 300px; }
+  .login_page :global .login-form-forgot {
+    float: right; }
+  .login_page :global .login-form-button {
+    width: 100%; }

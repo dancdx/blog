@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import * as actions from './actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import Box from '@/components/layout'
 // import { Form, Input, Button  } from 'antd'
 import styles from './index.css'
 
@@ -68,8 +69,8 @@ class RegistrationForm extends React.Component {
     };
 
     return (
+      <Box>
       <div className={styles.login_page}>
-        <h1>博客后台管理系统</h1>
       <Form onSubmit={this.handleSubmit}>
         <FormItem
           {...formItemLayout}
@@ -145,6 +146,7 @@ class RegistrationForm extends React.Component {
         </FormItem>
       </Form>
       </div>
+      </Box>
     )
   }
 }

@@ -3,9 +3,13 @@ import * as actions from './actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Form, Icon, Input, Button, Checkbox  } from 'antd'
+import Box from '@/components/layout'
+import { Layout, Menu, Breadcrumb } from 'antd'
 import styles from './index.css'
 
 const FormItem = Form.Item
+const { SubMenu } = Menu
+const { Header, Content, Footer, Sider } = Layout
 
 class NormalLoginForm  extends Component{
   handleSubmit = (e) => {
@@ -21,8 +25,8 @@ class NormalLoginForm  extends Component{
   render () {
     const { getFieldDecorator } = this.props.form
     return (
+      <Box>
       <div className={styles.login_page}>
-        <h1>博客后台管理系统</h1>
         <Form onSubmit={this.handleSubmit} className="login-form">
         <FormItem>
           {getFieldDecorator('username', {
@@ -53,6 +57,7 @@ class NormalLoginForm  extends Component{
         </FormItem>
       </Form>
       </div>
+      </Box>
     )
   }
 }
