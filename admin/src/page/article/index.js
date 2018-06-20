@@ -3,13 +3,14 @@ import React, { Component } from 'react'
 // import { connect } from 'react-redux'
 // import { bindActionCreators } from 'redux'
 import Box from '@/components/layout'
-import { Layout, Menu, Breadcrumb, Icon, Select  } from 'antd'
+import { Layout, Menu, Breadcrumb, Icon, Select, Input } from 'antd'
 
 import styles from './index.css'
 
 const { SubMenu } = Menu
 const { Content, Sider } = Layout
 const Option = Select.Option;
+const { TextArea } = Input
 
 function handleChange(value) {
   console.log(`selected ${value}`);
@@ -54,7 +55,7 @@ class Article extends Component {
             <label for="sort">选择分类</label>
             <Select
               showSearch
-              style={{ width: 200 }}
+              style={{ width: 400 }}
               placeholder="Select a person"
               optionFilterProp="children"
               onChange={handleChange}
@@ -71,13 +72,21 @@ class Article extends Component {
             <label for="sort">选择标签</label>
             <Select
               mode="multiple"
-              style={{ width: '100%' }}
+              style={{ width: 400 }}
               placeholder="Please select"
               defaultValue={['a10', 'c12']}
               onChange={handleChange}
             >
               {children}
             </Select>
+          </div>
+          <div className = {styles.choose_sort}>
+            <label for="sort">文章标题</label>
+            <Input placeholder="输入标题" style={{ width: 400 }}/>
+          </div>
+          <div className = {styles.choose_sort}>
+            <label for="sort">文章内容</label>
+            <TextArea rows={4} />
           </div>
         </Content>
       </Layout>
