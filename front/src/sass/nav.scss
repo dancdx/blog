@@ -1,0 +1,17 @@
+.nav{
+    width: 270px;
+    float: left;
+    .search-box{
+        padding: 34px 24px;
+        overflow: hidden;
+        input{
+            float: left;
+            width: 132px;
+            padding: 4px 14px;
+        }
+        button{
+            float: right;
+            width: 50px;
+        }
+    }
+}

@@ -1,0 +1,32 @@
+.header{
+    overflow: hidden;
+    h2{
+        float: left;
+        a{
+            font-size: 24px;
+            line-height: 24px;
+            color: #ae432e;
+            text-decoration: none;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
+    }
+    .headerLink{
+        float: right;
+        margin-top: 38px;
+        a{
+            display: inline-block;
+            margin-right: 20px;
+            color: #666;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 18px;
+        }
+        a.focus{
+            color: #ae432e;
+            text-decoration: underline;
+        }
+    }
+}
