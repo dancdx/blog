@@ -14,7 +14,7 @@
     }
     .headerLink{
         float: right;
-        margin-top: 38px;
+        margin-top: 48px;
         a{
             display: inline-block;
             margin-right: 20px;
@@ -26,7 +26,8 @@
         }
         a.focus{
             color: #ae432e;
-            text-decoration: underline;
+            padding-bottom:5px;
+            border-bottom:4px solid #ae432e;
         }
     }
 }

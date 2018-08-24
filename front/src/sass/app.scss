@@ -1,5 +1,5 @@
 body{
-    background: url(../assets/bg_body.png) 0 0 repeat;
+    background: url(assets/img/bg_body.png) 0 0 repeat;
 }
 .wrap{
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -9,6 +9,11 @@ body{
     color: #2c3e50;
     width: 1200px;
     margin: 20px auto;
+    .content{
+        overflow: hidden;
+        box-shadow: 2px 2px 12px #787878;
+        margin-top: 20px;
+    }
   }
 /* .nav {
     padding: 30px;
